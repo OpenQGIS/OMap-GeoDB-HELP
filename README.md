@@ -1,4 +1,5 @@
-# `Sino-GeoDB 「九州」地理数据库` 数据解析
+# `Sino-GeoDB 「九州」地理数据库` 
+日期：2025.9.14
 
 > [Sino-GeoDB 「九州」地理数据库](https://his.lreept.space/openqgis/omap-geodb/)，是一款完全基于开源数据库OpenStreetMap（简称OSM）进行本土化适配的华夏九州范围的综合类地理数据库。
 
@@ -39,14 +40,15 @@ c. 华夏的GISer缺乏一个覆盖全国、结构统一、更新及时的边界
 九州地理数据库当前共包含**15小项**合计**7大类**。
 
 | 数据标准名               | 数据类别 | 数据结构                                               |
-| ------------------------ | -------------- | ------------------------------------------------ |
+| ---------------------- | -------------- | --------------------------------------- |
 | oData-air_system           | 空中系统 | 【线】机场跑道、缆车系统                         |
 | oData-building           | 建筑数据 | 【面】建筑数据                                         |
 | oData-land_series       | 土地数据 | 【点】山峰、温泉；【线】山脊；【面】土地利用；【面】自然覆盖 |
+| oData-Power           | - | 不上线 |
 | oData-railway_series    | 铁路数据 | 【点】铁路、地铁站点；【线】详细标签轨道线               |
 | oData-roads              | 道路数据 | 【线】道路数据                                         |
-| oData-transport    | 交通     | 【点】电塔、变压器；【线】电线；【面】变电站               |
-| oData-water&damn_series | 水系数据 | 【线】水系；【线】大坝；【面】水系面；【面】大坝             |
+| oData-transport    | 交通     | 【点】公共交通站点；【线】轮渡航线；【面】公共交通面               |
+| oData-WaterDamn_series | 水系数据 | 【线】水系；【线】大坝；【面】水系面；【面】大坝             |
 
 ### **数据格式：**
 
@@ -54,9 +56,9 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 
 ### **读取和转换：**
 
-1. 读取|将gpkg文件直接拖拽至QGIS中即可完成加载；ArcGIS Pro 3.0也支持对gpkg直接加载。
-2. 转换|在QGIS中加载gpkg后，在需要转换的图层`【右键】`>>`【导出】`>>`【要素另存为】或【选中要素另存为】`，在弹出窗口的`【格式】`项选择`【ESRI形状文件】`**即可导出为SHP文件**。
-3. **警告**|SHP文件的大小可能远超过gpkg文件本身的大小，请注意计算机磁盘容量。
+1. 🏃 **读取 |** 将gpkg文件直接拖拽至QGIS中即可完成加载；ArcGIS Pro 3.0也支持对gpkg直接加载。
+2. 🔄 **转换 |** 在QGIS中加载gpkg后，在需要转换的图层`【右键】`>>`【导出】`>>`【要素另存为】或【选中要素另存为】`，在弹出窗口的`【格式】`项选择`【ESRI形状文件】`**即可导出为SHP文件**。
+3. 👻 **警告 |** SHP文件的大小可能远超过gpkg文件本身的大小，请注意计算机磁盘容量。
 
 ## 九州数据库各类说明
 
@@ -65,10 +67,11 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 1. [🛫 空中系统](#section1)
 2. [🏘️ 建筑数据](#section2)
 3. [🌳 土地数据](#section3)
-4. [🚉 铁路数据](#section4)
-5. [🚘️ 道路数据](#section5)
-6. [🚘️ 交通设施](#section6)
-7. [🌊 水系大坝](#section7)
+4. ⚡️ ……
+5. [🚉 铁路数据](#section5)
+5. [🚘️ 道路数据](#section6)
+7. [🚥 交通设施](#section7)
+8. [🌊 水系大坝](#section8)
 
 </br>
 
@@ -76,7 +79,7 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 
 | 数据标准名               | 数据类别 | 数据结构                      |
 | -------------------------- | ---------- | -------------------------------------------------------- |
-| oData-air_system           |空中系统 | 【线】机场跑道;【线】缆车系统 |
+| oData-air_system           |    | 【线】机场跑道;【线】缆车系统 |
 
 ### 1.1 机场跑道数据示范
 
@@ -164,45 +167,45 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 
 #### 2.2.2 building 字段详解
 
-> ##### 1.Accommodation 住宅建筑
-> 
-> apartments（公寓楼）, barracks（营房）, bungalow（平房）, cabin（小木屋）, detached（独立住宅）, dormitory（宿舍）, farm（农舍）, ger（蒙古包）, hotel（酒店）, house（房屋）, houseboat（船屋）, residential（住宅类建筑）, semidetached_house（联排双拼住宅）, static_caravan（固定式房车）, stilt_house（高脚屋）, terrace（排屋）, tree_house（树屋）, trullo（特鲁洛圆顶屋）
+##### 1.Accommodation 住宅建筑
 
-> ##### 2.Commercial 商业建筑
-> 
-> commercial（商业建筑）, industrial（工业建筑）, kiosk（亭子/小卖部）, office（办公楼）, retail（零售建筑）, supermarket（超市）, warehouse（仓库）
+apartments（公寓楼）,bungalow（平房）, cabin（小木屋）, detached（独立住宅）, dormitory（宿舍）, farm（农舍）, ger（蒙古包）, hotel（酒店）, house（房屋）, houseboat（船屋）, residential（住宅类建筑）, semidetached_house（联排双拼住宅）, static_caravan（固定式房车）, stilt_house（高脚屋）, terrace（排屋）, tree_house（树屋）, trullo（特鲁洛圆顶屋）
 
-> ##### 3.Religious 宗教建筑
-> 
-> religious（宗教建筑）, cathedral（大教堂）, chapel（小教堂）, church（教堂）, kingdom_hall（王国聚会所）, monastery（修道院）, mosque（清真寺）, presbytery（神父住所）, shrine（神殿/圣地）, synagogue（犹太教堂）, temple（庙宇/寺庙）
+##### 2.Commercial 商业建筑
 
-> ##### 4.Civic/amenity 便民建筑
-> 
-> bakehouse（烘焙屋）, bridge（桥梁建筑）, civic（市政建筑）, college（学院）, fire_station（消防站）, government（政府大楼）, gatehouse（门卫室）, hospital（医院）, kindergarten（幼儿园）, museum（博物馆）, public（公共建筑）, school（学校）, toilets（公共厕所）, train_station（火车站）, transportation（交通设施建筑）, university（大学）
+commercial（商业建筑）, industrial（工业建筑）, kiosk（亭子/小卖部）, office（办公楼）, retail（零售建筑）, supermarket（超市）, warehouse（仓库）
 
-> ##### 5.Agricultural/plant production 农用建筑
-> 
-> barn（谷仓）, conservatory（暖房/温室）, cowshed（牛棚）, farm_auxiliary（农场附属建筑）, greenhouse（温室）, slurry_tank（粪液池）, stable（马厩）, sty（猪圈）, livestock（牲畜棚舍）
+##### 3.Religious 宗教建筑
 
-> ##### 6.Sports 体育建筑
-> 
-> grandstand（看台）, pavilion（展馆）, stable（马厩）, farm_auxiliary（农场附属建筑）, farm_auxiliary（农场附属建筑）, barn（谷仓）
+religious（宗教建筑）, cathedral（大教堂）, chapel（小教堂）, church（教堂）, monastery（修道院）, mosque（清真寺）, temple（庙宇/寺庙）
 
-> ##### 7.Storage 仓储建筑
-> 
-> allotment_house（农舍）, boathouse（船屋）, hangar（机库）, hut（小屋）, shed（棚屋）
+##### 4.Civic/amenity 便民建筑
 
-> ##### 8.Transport 交通建筑
-> 
-> carport（车棚）, garage（车库）, garages（车库，复数）, parking（停车场）, train_station（火车站）, subway_station（地铁站）, tram_station（有轨电车站）, bus_station（公交车站）
+bakehouse（烘焙屋）, bridge（桥梁建筑）, civic（市政建筑）, college（学院）, fire_station（消防站）, government（政府大楼）, gatehouse（门卫室）, hospital（医院）, kindergarten（幼儿园）, museum（博物馆）, public（公共建筑）, school（学校）, toilets（公共厕所）, train_station（火车站）, transportation（交通设施建筑）, university（大学）
 
-> ##### 9.Power/technical buildings 特殊建筑
-> 
-> digester（沼气池）, service（设备间）, tech_cab（技术柜）, transformer_tower（变电站）, water_tower（水塔）, storage_tank（储罐）, silo（筒仓）
+##### 5.Agricultural/plant production 农用建筑
 
-> ##### 10.Other buildings 其他建筑
-> 
-> beach_hut（海滩小屋）, bunker（地堡）, castle（城堡）, construction（施工建筑）, container（集装箱房）, guardhouse（岗亭）, military（军事建筑）, outbuilding（附属建筑）, pagoda（宝塔）, quonset_hut（拱形活动屋）, roof（屋顶建筑）, ruins（废墟）, ship（船屋）, tent（帐篷）, tower（塔楼）, triumphal_arch（凯旋门）, windmill（风车）, destroyed（已毁建筑）
+barn（谷仓）, conservatory（暖房/温室）, cowshed（牛棚）, farm_auxiliary（农场附属建筑）, greenhouse（温室）, slurry_tank（粪液池）, stable（马厩）, sty（猪圈）, livestock（牲畜棚舍）
+
+##### 6.Sports 体育建筑
+
+grandstand（看台）, pavilion（展馆）, riding_hall（马场建筑）,sports_hall（体育馆）,sports_centre（体育中心）,stadium（体育馆建筑）
+
+##### 7.Storage 仓储建筑
+
+allotment_house（农舍）, boathouse（船屋）, hangar（机库）, hut（小屋）, shed（棚屋）
+
+##### 8.Transport 交通建筑
+
+carport（车棚）, garage（车库）, garages（联排车库）, parking（停车场）, train_station（火车站）, subway_station（地铁站）, tram_station（有轨电车站）, bus_station（公交车站）
+
+##### 9.Power/technical buildings 特殊建筑
+
+digester（沼气池）, service（设备间）, tech_cab（技术柜）,  water_tower（水塔）, storage_tank（储罐）, silo（筒仓）
+
+##### 10.Other buildings 其他建筑
+
+beach_hut（海滩小屋）, castle（城堡）, construction（施工建筑）, container（集装箱房）,outbuilding（附属建筑）, pagoda（宝塔）, quonset_hut（拱形活动屋）, roof（屋顶建筑）, ruins（废墟）, ship（船屋）, tent（帐篷）, tower（塔楼）, triumphal_arch（凯旋门）, windmill（风车）, destroyed（已毁建筑）
 
 </br>
 
@@ -241,71 +244,71 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 
 #### 3.1.2 landuse 详细解读1-开发用地
 
-> ##### developed land 建设用地
-> 
-> commercial（商业）, construction（建筑工地）, education（教育）, fairground（集市/展会场）, industrial（工业）, residential（住宅）, retail（零售）, institutional（机构）
+##### developed land 建设用地
 
-> ##### rural and agricultural land 农用地
-> 
-> aquaculture（水产养殖）, allotments（分块菜地）, farmland（农田）, farmyard（农家场院）, paddy（稻田）, animal_keeping（牲畜饲养）, flowerbed（花坛）, forest（森林）, logging（伐木区）, greenhouse_horticulture（温室园艺）, meadow（草甸）, orchard（果园）, plant_nursery（苗圃）, vineyard（葡萄园）
+commercial（商业）, construction（建筑工地）, education（教育）, fairground（集市/展会场）, industrial（工业）, residential（住宅）, retail（零售）, institutional（机构）
 
-> ##### Other landuse 其他土地利用
-> 
-> aquaculture（水产养殖）, allotments（分块菜地）, farmland（农田）, farmyard（农家场院）, paddy（稻田）, animal_keeping（牲畜饲养）, flowerbed（花坛）, forest（森林）, logging（伐木区）, greenhouse_horticulture（温室园艺）, meadow（草甸）, orchard（果园）, plant_nursery（苗圃）, vineyard（葡萄园）
+##### rural and agricultural land 农用地
+
+aquaculture（水产养殖）, allotments（分块菜地）, farmland（农田）, farmyard（农家场院）, paddy（稻田）, animal_keeping（牲畜饲养）, flowerbed（花坛）, forest（森林）, logging（伐木区）, greenhouse_horticulture（温室园艺）, meadow（草甸）, orchard（果园）, plant_nursery（苗圃）, vineyard（葡萄园）
+
+##### Other landuse 其他土地利用
+
+aquaculture（水产养殖）, allotments（分块菜地）, farmland（农田）, farmyard（农家场院）, paddy（稻田）, animal_keeping（牲畜饲养）, flowerbed（花坛）, forest（森林）, logging（伐木区）, greenhouse_horticulture（温室园艺）, meadow（草甸）, orchard（果园）, plant_nursery（苗圃）, vineyard（葡萄园）
 
 ####  3.1.3 landuse 详细解读2-娱乐用地
 
-> ##### Sustenance 餐饮用地
-> 
-> bar（酒吧）, bbq（烧烤点）, biergarten（啤酒花园）, cafe（咖啡馆）, drinking_water（饮用水点）, fast_food（快餐店）, food_court（美食广场）, ice_cream（冰淇淋店）, pub（酒馆）, restaurant（餐厅）
+##### Sustenance 餐饮用地
 
-> ##### Education 教育用地
-> 
-> commercial（商业）, construction（建筑工地）, education（教育）, fairground（集市/展会场）, industrial（工业）, residential（住宅）, retail（零售）, institutional（机构）
+bar（酒吧）, bbq（烧烤点）, biergarten（啤酒花园）, cafe（咖啡馆）, drinking_water（饮用水点）, fast_food（快餐店）, food_court（美食广场）, ice_cream（冰淇淋店）, pub（酒馆）, restaurant（餐厅）
 
-> ##### Transport 交通用地
-> 
-> bicycle_parking (自行车停放点), bicycle_rental (自行车租赁点), boat_rental (船只租赁点), bus_station (公交车站), car_rental (汽车租赁点), car_sharing (共享汽车点), car_wash (洗车点), charging_station (充电站), ferry_terminal (轮渡码头), fuel (加油站), gritting_station (撒砂站), motorcycle_parking (摩托车停放点), parking (停车场), parking_entrance (停车场入口), taxi (出租车), ticket_validator (票务验证机)
+##### Education 教育用地
 
-> ##### Financial 金融用地
-> 
-> atm (自动取款机), bank (银行), bureau_de_change (货币兑换点)
+commercial（商业）, construction（建筑工地）, education（教育）, fairground（集市/展会场）, industrial（工业）, residential（住宅）, retail（零售）, institutional（机构）
 
-> ##### Healthcare 康养用地
-> 
-> baby_hatch (婴儿安全岛), clinic (诊所), dentist (牙科诊所), dialysis (透析中心), doctors (医生诊所), hospital (医院), nursing_home (养老院), pharmacy (药房), social_facility (社会福利机构), veterinary (兽医诊所)
+##### Transport 交通用地
 
-> ##### Entertainment, Arts & Culture 文娱用地
-> 
-> arts_centre (艺术中心), cinema (电影院), community_centre (社区中心), conference_centre (会议中心), events_venue (活动场所), music_venue (音乐场馆), nightclub (夜总会), planetarium (天文馆), social_centre (社交中心), studio (工作室/演播室), theatre (剧院)
+bicycle_parking (自行车停放点), bicycle_rental (自行车租赁点), boat_rental (船只租赁点), bus_station (公交车站), car_rental (汽车租赁点), car_sharing (共享汽车点), car_wash (洗车点), charging_station (充电站), ferry_terminal (轮渡码头), fuel (加油站), gritting_station (撒砂站), motorcycle_parking (摩托车停放点), parking (停车场), parking_entrance (停车场入口), taxi (出租车), ticket_validator (票务验证机)
 
-> ##### Public Service 公服用地
-> 
-> courthouse (法院), embassy (大使馆), fire_station (消防站), police (警察局), post_box (邮筒), post_depot (邮政仓库), post_office (邮局), prison (监狱), rangers_station (护林站), townhall (市政厅)
+##### Financial 金融用地
 
-> ##### Facilities 设施用地
-> 
-> bench (长椅), clock (时钟), crematorium (火葬场), diving_platform (跳水台), drinking_water (饮用水点), fountain (喷泉), grave_yard (墓地), hunting_stand (狩猎台), marketplace (集市), phone (公共电话), place_of_worship (宗教场所), recycling (回收站), shelter (庇护所), shower (淋浴间), table (野餐桌), toilet (公共厕所), water_point (取水点), watering_place (牲畜饮水处)
+atm (自动取款机), bank (银行)
 
-> ##### Waste Management 废物管理用地
-> 
-> recycling (回收站), waste_basket (垃圾桶), waste_disposal (垃圾处理点), waste_transfer_station (垃圾转运站)
+##### Healthcare 康养用地
 
-> ##### Others amenity 其他设施用地
-> 
-> animal_boarding (宠物寄养所), animal_shelter (动物收容所), boat_storage (船只存放处), dojo (道场), game_feeding (动物喂食点), give_box (爱心捐赠箱), internet_cafe (网吧), kitchen (公共厨房), loading_dock (装卸平台), public_bath (公共澡堂), self_storage (自助仓储), stripclub (脱衣舞俱乐部)
+baby_hatch (婴儿安全岛), clinic (诊所), dentist (牙科诊所), dialysis (透析中心), doctors (医生诊所), hospital (医院), nursing_home (养老院), pharmacy (药房), social_facility (社会福利机构), veterinary (兽医诊所)
+
+##### Entertainment, Arts & Culture 文娱用地
+
+arts_centre (艺术中心), cinema (电影院), community_centre (社区中心), conference_centre (会议中心), events_venue (活动场所), music_venue (音乐场馆), nightclub (夜总会), planetarium (天文馆), social_centre (社交中心), studio (工作室/演播室), theatre (剧院)
+
+##### Public Service 公服用地
+
+courthouse (法院), embassy (大使馆), fire_station (消防站), police (警察局), post_box (邮筒), post_depot (邮政仓库), post_office (邮局), prison (监狱), rangers_station (护林站), townhall (市政厅)
+
+##### Facilities 设施用地
+
+bench (长椅), clock (时钟), crematorium (火葬场), diving_platform (跳水台), drinking_water (饮用水点), fountain (喷泉), grave_yard (墓地), hunting_stand (狩猎台), marketplace (集市), phone (公共电话), place_of_worship (宗教场所), recycling (回收站), shelter (庇护所), shower (淋浴间), table (野餐桌), toilet (公共厕所), water_point (取水点), watering_place (牲畜饮水处)
+
+##### Waste Management 废物管理用地
+
+recycling (回收站), waste_basket (垃圾桶), waste_disposal (垃圾处理点), waste_transfer_station (垃圾转运站)
+
+##### Others amenity 其他设施用地
+
+animal_boarding (宠物寄养所), animal_shelter (动物收容所), boat_storage (船只存放处), dojo (道场), game_feeding (动物喂食点), give_box (爱心捐赠箱), internet_cafe (网吧), kitchen (公共厨房), loading_dock (装卸平台), public_bath (公共澡堂), self_storage (自助仓储), stripclub (脱衣舞俱乐部)
 
 ####  3.1.3 landuse 详细解读3-休闲用地
 
-> ##### leisure 休闲用地
-> 
-> adult_gaming_centre（成人游戏中心），amusement_arcade（游乐场），bandstand（音乐台），beach_resort（海滩度假村），common（公共绿地），dance（舞蹈），dog_park（狗狗公园），escape_game（密室逃脱），fitness_centre（健身中心），fitness_station（健身站），garden（花园），golf_course（高尔夫球场），hacker_space（黑客空间），ice_rink（溜冰场），marina（码头），miniature_golf（迷你高尔夫），nature_reserve（自然保护区），park（公园），picnic_table（野餐桌），pitch（运动场），playground（游乐场），public_bath（公共浴室），sauna（桑拿房），slipway（滑道），sports_centre（体育中心），stadium（体育场），summer_camp（夏令营），swimming_area（游泳区），swimming_pool（游泳池），track（跑道），water_park（水上乐园），wildlife_hide（野生动物观察点）
+##### leisure 休闲用地
+
+adult_gaming_centre（成人游戏中心），amusement_arcade（游乐场），bandstand（音乐台），beach_resort（海滩度假村），common（公共绿地），dance（舞蹈），dog_park（狗狗公园），escape_game（密室逃脱），fitness_centre（健身中心），fitness_station（健身站），garden（花园），golf_course（高尔夫球场），hacker_space（黑客空间），ice_rink（溜冰场），marina（码头），miniature_golf（迷你高尔夫），nature_reserve（自然保护区），park（公园），picnic_table（野餐桌），pitch（运动场），playground（游乐场），public_bath（公共浴室），sauna（桑拿房），slipway（滑道），sports_centre（体育中心），stadium（体育场），summer_camp（夏令营），swimming_area（游泳区），swimming_pool（游泳池），track（跑道），water_park（水上乐园），wildlife_hide（野生动物观察点）
 
 ####  3.1.3 landuse 详细解读4-旅游用地
 
-> ##### tourism 旅游用地
-> 
-> alpine_hut（高山小屋），apartment（公寓），artwork（艺术品），attraction（景点），bed_and_breakfast（民宿），camp_site（露营地），caravan_site（房车营地），chalet（木屋别墅），gallery（画廊），guest_house（宾馆），hostel（青年旅舍），hotel（酒店），information（信息中心），motel（汽车旅馆），museum（博物馆），picnic_site（野餐区），theme_park（主题公园），view_point（观景点），wilderness_hut（荒野小屋），zoo（动物园）
+##### tourism 旅游用地
+
+alpine_hut（高山小屋），apartment（公寓），artwork（艺术品），attraction（景点），bed_and_breakfast（民宿），camp_site（露营地），caravan_site（房车营地），chalet（木屋别墅），gallery（画廊），guest_house（宾馆），hostel（青年旅舍），hotel（酒店），information（信息中心），motel（汽车旅馆），museum（博物馆），picnic_site（野餐区），theme_park（主题公园），view_point（观景点），wilderness_hut（荒野小屋），zoo（动物园）
 
 ### 3.2 natural_polygon 自然地块-面
 
@@ -319,31 +322,31 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 
 #### 3.2.2 Nature 字段解析
 
-> ##### Vegetation 天然植被
-> 
-> grass（草地），grassland（草原），heath（荒野），scrub（灌木丛），tree（树木），tree_row（树列），wood（树林），shrubbery（灌木丛）
+##### Vegetation 天然植被
 
-> ##### Water related 水相关
-> 
-> atoll（环礁），bay（海湾），beach（海滩），blowhole（喷水洞），coastline（海岸线），fjord（峡湾），geyser（间歇泉），glacier（冰川），hot_spring（温泉），island（岛屿），marsh（沼泽），mud（泥滩），reef（礁石），shoal（浅滩），spring（泉），strait（海峡），water（水域），wetland（湿地），riverbed（河床）
+grass（草地），grassland（草原），heath（荒野），scrub（灌木丛），tree（树木），tree_row（树列），wood（树林），shrubbery（灌木丛）
 
-> ##### Geology related 地理相关
-> 
-> bare_rock（裸岩），cape（海角），cave_entrance（洞穴入口），cliff（悬崖），crater（火山口），dune（沙丘），earth_bank（土坡），fell（荒山），hill（丘陵），isthmus（地峡），landform（地貌），moraine（冰碛），peak（山峰），peninsula（半岛），ridge（山脊），rock（岩石），saddle（鞍部），sand（沙地），scree（碎石坡），sinkhole（天坑），stone（巨石），valley（山谷），volcano（火山），wilderness（荒野），mountain_range（山脉），mesa（台地），desert（沙漠），caldera（破火山口），dunes（沙丘群），gorge（峡谷），landslide（滑坡），shingle（砾石滩）
+##### Water related 水相关
+
+atoll（环礁），bay（海湾），beach（海滩），blowhole（喷水洞），coastline（海岸线），fjord（峡湾），geyser（间歇泉），glacier（冰川），hot_spring（温泉），island（岛屿），marsh（沼泽），mud（泥滩），reef（礁石），shoal（浅滩），spring（泉），strait（海峡），water（水域），wetland（湿地），riverbed（河床）
+
+##### Geology related 地理相关
+
+bare_rock（裸岩），cape（海角），cave_entrance（洞穴入口），cliff（悬崖），crater（火山口），dune（沙丘），earth_bank（土坡），fell（荒山），hill（丘陵），isthmus（地峡），landform（地貌），moraine（冰碛），peak（山峰），peninsula（半岛），ridge（山脊），rock（岩石），saddle（鞍部），sand（沙地），scree（碎石坡），sinkhole（天坑），stone（巨石），valley（山谷），volcano（火山），wilderness（荒野），mountain_range（山脉），mesa（台地），desert（沙漠），caldera（破火山口），dunes（沙丘群），gorge（峡谷），landslide（滑坡），shingle（砾石滩）
 
 </br>
 
-## 4.🚉 铁路数据<a id="section4"></a>
+## 5.🚉 铁路数据<a id="section5"></a>
 | 数据标准名               | 数据类别 | 数据结构       |  
 | ------------------------ | ---------- | ----------------    |  
-| oData-railway_series    | railway_line    | 【线】铁路线     |  
+| oData-roads    | railway_line    | 【线】铁路线     |  
 | oData-railway_series    |  railway_point  | 【点】铁路站点   |  
 
 涵盖各项完整的高速铁路、普速铁路、废弃铁路、地铁、轻轨、观光轨道数据。
 
-### 4.1 railway_line 铁路线
+### 5.1 railway_line 铁路线
 
-#### 4.1.1 railway_line 数据示例
+#### 5.1.1 railway_line 数据示例
 | 序号 | 字段名     | 属性值     | 解释             |
 | :--: | :--------: | :--------------: | :--------------- |
 | 1    | name       | 西成高铁    | 名称             |
@@ -356,27 +359,127 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 | 8    | usage      | main        | 使用类型（主线、侧线…）  |
 | 9    | bridge     | F           | 是否为桥梁结构（T为是） |
 | 10   | tunnel     | T           | 是否为隧道结构（T为是） |
-| 11   | altName    | 房家湾隧道   | 桥隧名         |
-
-> ##### railway 标签解析
-> 
-> rail（普通铁路）, construction（建设中）, disused（废弃）, abandoned（被遗弃）, traverser（横移台）, engine_shed（机车库）, subway（地铁）, proposed（提议中的）, tram（有轨电车）, planned（规划中）, razed（已拆除）, light_rail（轻轨）, monorail（单轨铁路）, narrow_gauge（窄轨）, yes（存在铁路）, turntable（转车台）, funicular（缆索铁路）, platform_edge（站台边缘）, halt（小站）, miniature（微缩铁路）, crane（起重机）, preserved（保存良好的/博物馆线路）, tram_stop（有轨电车站）, dismantled（已拆解）, wash（洗车设施）, container_terminal（集装箱码头）, ventilation_shaft（通风井）, historic（历史遗迹）,  stop（停车点）, yard（编组场）, buffer_stop（缓冲挡）, ferry（轮渡）
-
-### 4.2 railway_point 铁路站点
-
-#### 4.2.1 railway_point 数据示例
-| 序号 | 字段名     | 属性值     | 解释             |
-| :--: | :--------: | :--------------: | :--------------- |
-| 1    | name       | 成都东     | 站点名            |
-| 2    | station    | rail        | 普通铁路站点      |
-
-> ##### station 标签解析
-> 
-> station（车站）, subway（地铁）, train（列车）, monorail（单轨铁路）, tram（有轨电车）, tram_stop（有轨电车站）
+| 11   | BrgTunName | 房家湾隧道   | 桥隧名         |
 
 </br>
 
-## 7.🌊 水系大坝<a id="section7"></a>
+## 6.🚘️ 道路数据<a id="section6"></a>
+| 数据标准名               | 数据类别 | 数据结构       |  
+| ------------------------ | ---------- | ----------------    |  
+| oData-roads    |       | 【线】道路     |   
+
+涵盖各项完整各级道路、桥隧属性、规划施工道路。
+
+### 6.1 road 道路线
+
+#### 6.1.1 road 数据示例
+| 序号 | 字段名     | 属性值     | 解释             |
+| :--: | :--------: | :--------------: | :--------------- |
+| 1    | name       | 天府大道    | 道路名             |
+| 2    | highway    | primary     | 道路等级             |
+| 3    | tunnel     | T           | 是否为隧道（F为否）   |
+| 4    | bridge     | F           | 是否为隧道（F为否） |
+| 5    | layer      | 0           | 道路图层（详细渲染用）         |
+| 6    | ref        | G318        | 道路编号           |
+| 7    | oneway     | T           | 是否为单行道（T为是）  |
+| 8    | BrgTunName | 环球中心隧道 | 桥隧名（补充标记用）   |
+| 9    | RoadClass  | 主要道路     | 归类的道路类别  |
+
+##### highway 标签解析
+
+
+| 英文值          | 中文翻译       | 含义说明                           |
+|-----------------|------------|------------------------------------|
+| **主要道路**    |            |                                    |
+| motorway        | 高速公路       | 专为高速车辆交通设计的主要道路，通常有严格的准入限制 |
+| motorway_link   | 高速匝道      | 连接高速公路主线与其它道路或设施的匝道        |
+| trunk           | 国道快速路        | 连接城市或地区的重要道路，交通流量较高         |
+| trunk_link      | 国道快速路连接线   | 连接主干道与其它道路的快速通道              |
+| primary         | 主干道        | 连接较大城镇或城市的主要道路，次于高速公路和主干道 |
+| primary_link    | 主干道连接路     | 连接主干道（primary）的匝道或辅助道路        |
+| **次级道路**    |            |                                    |
+| secondary       | 次干道        | 连接较小城镇或社区的道路，交通流量中等        |
+| secondary_link  | 次干道连接路     | 连接次干道（secondary）的匝道或辅助道路      |
+| tertiary        | 支干道        | 连接乡村或较小社区的道路，交通流量较低        |
+| tertiary_link   | 三级连接路     | 连接支干道（tertiary）的匝道或辅助道路       |
+| **地方道路**    |            |                                    |
+| unclassified    | 未分类道路     | 未明确分类的普通道路，通常为小型地方道路       |
+| residential     | 住宅道路       | 服务于住宅区的道路，限速较低，优先考虑居民安全   |
+| living_street   | 生活街道       | 居民优先的街道，车辆需低速行驶以保护行人       |
+| **专用道路**    |            |                                    |
+| service         | 服务道路       | 用于服务特定区域（如停车场、仓库）的道路       |
+| busway          | 公交专用道     | 专为公交车设计的专用道路                   |
+| bus_guideway    | 公交导轨道     | 公交车的引导轨道，通常为固定路线             |
+| **非机动车道**  |            |                                    |
+| cycleway        | 自行车道       | 专为自行车设计的道路或路径                 |
+| footway         | 人行道        | 专为行人设计的步行路径                   |
+| pedestrian      | 步行街        | 禁止或限制车辆通行的行人专用区域            |
+| path            | 小径          | 非正式的步行或多用途小路，通常较窄          |
+| track           | 小道          | 未铺装的乡村或农业用小路，适合步行或轻型车辆   |
+| bridleway       | 马道          | 专为骑马或步行设计的小路                 |
+| **特殊用途**    |            |                                    |
+| steps           | 台阶          | 供行人上下的台阶路径                    |
+| via_ferrata     | 铁道攀登路径   | 配备固定绳索或梯子的登山路径               |
+| raceway         | 赛道          | 用于赛车运动的专用赛道                   |
+| sport_track     | 运动跑道       | 用于体育运动的跑道，如田径场               |
+| corridor        | 走廊          | 建筑物内的通道，连接不同区域               |
+| escape          | 逃生通道       | 用于紧急情况的逃生路径                   |
+| **建设状态**    |            |                                    |
+| construction    | 建设中        | 正在建设中的道路，尚未开放使用             |
+| proposed        | 规划道路       | 计划中的道路，尚未开始建设                |
+
+</br>
+
+## 7.🚥 Transport 交通数据<a id="section7"></a>
+
+| 数据标准名       | 数据类别 | 数据结构       |  
+| -------------- | ---------- | ----------------    |  
+| oData-transport | point      | 【点】交通点数据     |  
+| oData-transport | line       | 【线】交通线数据   |  
+| oData-transport | polygon    | 【面】交通面数据   |  
+
+### 7.1 Transport-point 交通点数据
+
+#### 7.1.1 transport-point 数据示例
+
+|序号| 字段名    | 属性值         | 解释                 |
+| :------: | :-----------: | :----------------: | :----------------- |
+|1| name          | 成都    | 名称    |
+|2| transport      | toll_booth    | 收费站    |
+
+##### transport 属性详解
+
+traffic_signals（交通信号灯）、toll_booth（收费站）、bus_stop（公交车站）、bus_station（公交车站）、taxi（出租车）、parking_entrance（停车场入口）、ferry_terminal（渡轮码头）
+
+### 7.2 Transport-line 交通线数据
+
+#### 7.2.1 transport-line 数据示例
+
+|序号| 字段名    | 属性值         | 解释                 |
+| :------: | :-----------: | :----------------: | :----------------- |
+|1| name          | 夜游锦江    | 名称    |
+|2| transport      | ferry    | 轮渡线    |
+
+##### transport 属性详解
+
+traffic_signals（交通信号灯）、toll_booth（收费站）、bus_stop（公交车站）、bus_station（公交车站）、taxi（出租车）、parking_entrance（停车场入口）、ferry_terminal（渡轮码头）
+
+### 7.3 Transport-polygon 交通线数据
+
+#### 7.3.1 transport-polygon 数据示例
+
+|序号| 字段名    | 属性值         | 解释                 |
+| :------: | :-----------: | :----------------: | :----------------- |
+|1| name          | 天府机场    | 名称    |
+|2| transport      | airport    | 机场    |
+
+##### transport 属性详解
+
+transport（运输）、parking（停车场）、bus_station（公交车站）、railway（铁路）、ferry_terminal（渡轮码头）、research_institute（研究所）、services（服务区）、airport（机场）
+
+</br>
+
+## 8.🌊 水系大坝<a id="section8"></a>
 
 | 数据标准名               | 数据类别 | 数据结构       |  
 | ------------------------ | ---------- | ----------------    |  
@@ -385,9 +488,9 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 | oData-water&dam_series | dam_line           | 【线】大坝   |  
 | oData-water&dam_series | dam_polygon        | 【面】大坝   |
 
-### 7.1 waterway 水系线
+### 8.1 waterway 水系线
 
-#### 7.1.1 waterway 数据示例
+#### 8.1.1 waterway 数据示例
 
 |序号| 字段名    | 属性值         | 解释                 |
 | :------: | :-----------: | :----------------: | :----------------- |
@@ -399,11 +502,11 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 |6| intermittent  | T/null   | T为间歇性水流 |
 |7| salt          | T/null   | T为咸水       |
 
-> ##### waterway 属性详解
-> 
-> waterway（水道），canal（运河），ditch（沟渠），river（河流），drain（排水渠），stream（溪流），pressurised（压力管道），fish_pass（鱼道），tidal_channel（潮汐通道），fairway（航道）
+##### waterway 属性详解
 
-### 7.2 water_polygon 水域面
+waterway（水道），canal（运河），ditch（沟渠），river（河流），drain（排水渠），stream（溪流），pressurised（压力管道），fish_pass（鱼道），tidal_channel（潮汐通道），fairway（航道）
+
+### 8.2 water_polygon 水域面
 
 | WaterClass       | 水域一级分类 | 水域二级分类       |  
 | ---------------- | ---------- | ----------------    |  
@@ -411,7 +514,7 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 | Glacier     | 冰川               | 只包含冰川数据  |  
 | Wetland     | 湿地               | 只涵盖湿地数据   |  
 
-#### 7.2.1 water_polygon 数据示例
+#### 8.2.1 water_polygon 数据示例
 
 |序号| 字段名    | 属性值         | 解释                 |
 | :------: | :-----------: | :----------------: | :----------------- |
@@ -421,32 +524,32 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 |4| intermittent  | T/null      | T为间歇性水流 |
 |5| salt          | T/null      | T为咸水       |
 
-> ##### water 属性详解
-> 
-> basin（蓄水池），canal（运河），cenote（天然井），ditch（沟渠），drain（排水沟），fairway（航道），fish_pass（鱼道），harbour（港口），lagoon（潟湖），lake（湖泊），lock（船闸），moat（护城河），oxbow（牛轭湖），pond（池塘），rapids（急流），reflecting_pool（倒影池），reservoir（水库），river（河流），stream（溪流），stream_pool（溪潭），wastewater（废水池），water（水域）
+##### water 属性详解
 
-### 7.3 dam_line 大坝（线）
+basin（蓄水池），canal（运河），cenote（天然井），ditch（沟渠），drain（排水沟），fairway（航道），fish_pass（鱼道），harbour（港口），lagoon（潟湖），lake（湖泊），lock（船闸），moat（护城河），oxbow（牛轭湖），pond（池塘），rapids（急流），reflecting_pool（倒影池），reservoir（水库），river（河流），stream（溪流），stream_pool（溪潭），wastewater（废水池），water（水域）
 
-#### 7.1.1 dam_line 数据示例
+### 8.3 dam_line 大坝（线）
 
-|序号| 字段名    | 属性值         | 解释                 |
-| :------: | :-----------: | :----------------: | :----------------- |
-|1| name          | XX大坝     | 大坝名    |
-|2| dam      | dam    | 种类    |
-
-> ##### dam(dam_line) 属性详解
-> 
-> dam（水坝），weir（堰），waterfall（瀑布），lock_gate（闸门），sluice_gate（泄水闸），floodgate（防洪闸），debris_screen（拦污栅）
-
-### 7.2 dam_polygon 大坝（面）
-
-#### 7.2.1 water_polygon 数据示例
+#### 8.1.1 dam_line 数据示例
 
 |序号| 字段名    | 属性值         | 解释                 |
 | :------: | :-----------: | :----------------: | :----------------- |
 |1| name          | XX大坝     | 大坝名    |
 |2| dam      | dam    | 种类    |
 
-> ##### dam(dam_polygon) 属性详解
-> 
-> bdam（水坝），weir（堰），sluice_gate（泄水闸），waterfall（瀑布），lock_gate（闸门）
+##### dam(dam_line) 属性详解
+
+dam（水坝），weir（堰），waterfall（瀑布），lock_gate（闸门），sluice_gate（泄水闸），floodgate（防洪闸），debris_screen（拦污栅）
+
+### 8.2 dam_polygon 大坝（面）
+
+#### 8.2.1 water_polygon 数据示例
+
+|序号| 字段名    | 属性值         | 解释                 |
+| :------: | :-----------: | :----------------: | :----------------- |
+|1| name          | XX大坝     | 大坝名    |
+|2| dam      | dam    | 种类    |
+
+##### dam(dam_polygon) 属性详解
+
+dam（水坝），weir（堰），sluice_gate（泄水闸），waterfall（瀑布），lock_gate（闸门）
