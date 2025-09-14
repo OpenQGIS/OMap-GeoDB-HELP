@@ -167,43 +167,43 @@ QGIS与OSM同属于开源产品，数据首发格式以`*.GPKG（地理包）`�
 
 #### 2.2.2 building 字段详解
 
-##### 1.Accommodation 住宅建筑
+##### 2.2.2.1.Accommodation 住宅建筑
 
 apartments（公寓楼）,bungalow（平房）, cabin（小木屋）, detached（独立住宅）, dormitory（宿舍）, farm（农舍）, ger（蒙古包）, hotel（酒店）, house（房屋）, houseboat（船屋）, residential（住宅类建筑）, semidetached_house（联排双拼住宅）, static_caravan（固定式房车）, stilt_house（高脚屋）, terrace（排屋）, tree_house（树屋）, trullo（特鲁洛圆顶屋）
 
-##### 2.Commercial 商业建筑
+##### 2.2.2.2.Commercial 商业建筑
 
 commercial（商业建筑）, industrial（工业建筑）, kiosk（亭子/小卖部）, office（办公楼）, retail（零售建筑）, supermarket（超市）, warehouse（仓库）
 
-##### 3.Religious 宗教建筑
+##### 2.2.2.3.Religious 宗教建筑
 
 religious（宗教建筑）, cathedral（大教堂）, chapel（小教堂）, church（教堂）, monastery（修道院）, mosque（清真寺）, temple（庙宇/寺庙）
 
-##### 4.Civic/amenity 便民建筑
+##### 2.2.2.4.Civic/amenity 便民建筑
 
 bakehouse（烘焙屋）, bridge（桥梁建筑）, civic（市政建筑）, college（学院）, fire_station（消防站）, government（政府大楼）, gatehouse（门卫室）, hospital（医院）, kindergarten（幼儿园）, museum（博物馆）, public（公共建筑）, school（学校）, toilets（公共厕所）, train_station（火车站）, transportation（交通设施建筑）, university（大学）
 
-##### 5.Agricultural/plant production 农用建筑
+##### 2.2.2.5.Agricultural/plant production 农用建筑
 
 barn（谷仓）, conservatory（暖房/温室）, cowshed（牛棚）, farm_auxiliary（农场附属建筑）, greenhouse（温室）, slurry_tank（粪液池）, stable（马厩）, sty（猪圈）, livestock（牲畜棚舍）
 
-##### 6.Sports 体育建筑
+##### 2.2.2.6.Sports 体育建筑
 
 grandstand（看台）, pavilion（展馆）, riding_hall（马场建筑）,sports_hall（体育馆）,sports_centre（体育中心）,stadium（体育馆建筑）
 
-##### 7.Storage 仓储建筑
+##### 2.2.2.7.Storage 仓储建筑
 
 allotment_house（农舍）, boathouse（船屋）, hangar（机库）, hut（小屋）, shed（棚屋）
 
-##### 8.Transport 交通建筑
+##### 2.2.2.8.Transport 交通建筑
 
 carport（车棚）, garage（车库）, garages（联排车库）, parking（停车场）, train_station（火车站）, subway_station（地铁站）, tram_station（有轨电车站）, bus_station（公交车站）
 
-##### 9.Power/technical buildings 特殊建筑
+##### 2.2.2.9.Power/technical buildings 特殊建筑
 
 digester（沼气池）, service（设备间）, tech_cab（技术柜）,  water_tower（水塔）, storage_tank（储罐）, silo（筒仓）
 
-##### 10.Other buildings 其他建筑
+##### 2.2.2.10.Other buildings 其他建筑
 
 beach_hut（海滩小屋）, castle（城堡）, construction（施工建筑）, container（集装箱房）,outbuilding（附属建筑）, pagoda（宝塔）, quonset_hut（拱形活动屋）, roof（屋顶建筑）, ruins（废墟）, ship（船屋）, tent（帐篷）, tower（塔楼）, triumphal_arch（凯旋门）, windmill（风车）, destroyed（已毁建筑）
 
